@@ -1,17 +1,20 @@
-const int lm35Pin = A0; 
+const int sensorPin1 = A0; 
+const int sensorPin2 = A1; 
 
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(9600);  
 }
 
 void loop() {
-  int analogValue = analogRead(lm35Pin); 
-  float voltage = analogValue * (5.0 / 1023.0); 
-  float temperature = voltage * 100.0; 
+  int adcValue1 = analogRead(sensorPin1);
+  int adcValue2 = analogRead(sensorPin2);
   
-  Serial.print("Nhiet do hien tai: ");
-  Serial.print(temperature);
-  Serial.println(" *C");
+  float temp1 = (adcValue1 * 500.0) / 1023.0;
+  float temp2 = (adcValue2 * 500.0) / 1023.0;
+  
+  Serial.print(temp1);
+  Serial.print(",");      
+  Serial.println(temp2);  
   
   delay(1000); 
 }
